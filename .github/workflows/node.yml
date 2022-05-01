@@ -7,10 +7,10 @@ on:
 jobs:
   build:
     env:
-      CI:true
+      CI: true
     strategy:
       matrix:
-        version:[14,16]
+        version: [10, 12, 14]
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
