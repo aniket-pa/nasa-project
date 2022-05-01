@@ -6,12 +6,18 @@ on:
     branches: [ master ]
 jobs:
   build:
+    env:
+      CI:true
+    Strategy:
+      matrix:
+        node-version:[14.x,16.x]
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: setup node js with version 12
+      - name: setup node js with version ${{ matrix.version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: ${{ matrix.version }}
       - run : npm install
-      - run : npm run build --prefix client    
+      - run : npm run build --prefix client 
+      - run : npm run test   
