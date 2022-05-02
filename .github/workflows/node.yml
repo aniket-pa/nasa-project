@@ -8,12 +8,18 @@ jobs:
   build:
     env:
       CI: true
+      MONGO_URL: mongodb://localhost/nasa
     strategy:
       matrix:
-        version: [10, 12, 14]
+        version: [14 ,16]
+        mongodb-version: ['14.4']
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+      - name: Start mongodb server
+      - uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
       - name: setup node js with version ${{ matrix.version }}
         uses: actions/setup-node@v3
         with:
