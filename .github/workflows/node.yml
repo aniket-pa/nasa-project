@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         version: [14 ,16]
-        mongodb-version: ['14.4']
+        mongodb-version: ['4.4']
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
